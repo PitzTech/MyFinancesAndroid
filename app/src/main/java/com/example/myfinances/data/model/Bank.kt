@@ -2,12 +2,20 @@ package com.example.myfinances.data.model
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import java.math.BigDecimal
 import java.util.Date
 
 @Entity(tableName = "banks",
-    foreignKeys = [ForeignKey(entity = User::class, parentColumns = ["id"], childColumns = ["userId"], onDelete = ForeignKey.CASCADE)])
+    indices = [Index(value = ["userId"])],
+    foreignKeys = [ForeignKey(
+        entity = User::class,
+        parentColumns = ["id"],
+        childColumns = ["userId"],
+        onDelete = ForeignKey.CASCADE
+    )]
+)
 data class Bank(
     @PrimaryKey(autoGenerate = true) val id: Int,
     val title: String,

@@ -2,11 +2,19 @@ package com.example.myfinances.data.model
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import java.util.Date
 
 @Entity(tableName = "creditCards",
-    foreignKeys = [ForeignKey(entity = Bank::class, parentColumns = ["id"], childColumns = ["bankId"], onDelete = ForeignKey.CASCADE)])
+    indices = [Index(value = ["bankId"])],
+    foreignKeys = [ForeignKey(
+        entity = Bank::class,
+        parentColumns = ["id"],
+        childColumns = ["bankId"],
+        onDelete = ForeignKey.CASCADE
+    )]
+)
 data class CreditCard(
     @PrimaryKey(autoGenerate = true) val id: Int,
     val bankId: Int,
