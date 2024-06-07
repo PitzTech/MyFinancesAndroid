@@ -20,4 +20,7 @@ interface UserDao {
 
     @Query("SELECT * FROM users")
     fun getAllUsers(): LiveData<List<User>>
+
+    @Query("SELECT * FROM users WHERE email = :email LIMIT 1")
+    suspend fun getUserByEmail(email: String): User?
 }
