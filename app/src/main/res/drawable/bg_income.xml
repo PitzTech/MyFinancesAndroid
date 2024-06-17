@@ -1,0 +1,4 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#388E3C"/> <!-- Cor de fundo para receitas -->
+    <corners android:radius="32dp"/> <!-- Raio dos cantos arredondados -->
+</shape>

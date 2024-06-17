@@ -1,0 +1,243 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121212"
+    android:padding="16dp">
+
+    <!-- Título do Aplicativo -->
+    <TextView
+        android:id="@+id/textViewAppTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="8dp"
+        android:text="Minhas Finanças"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <!-- Data -->
+    <TextView
+        android:id="@+id/textViewDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewAppTitle"
+        android:text="Data"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <!-- Balanço da Conta -->
+    <TextView
+        android:id="@+id/textViewBalance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewDate"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:text="Balanço da Conta"
+        android:textColor="@android:color/white"
+        android:textSize="24sp" />
+
+    <!-- Resumo das Despesas e Receitas -->
+    <LinearLayout
+        android:id="@+id/summaryLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewBalance"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <!-- Resumo das Despesas -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_expenses"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewExpensesSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Resumo das Despesas"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Espaço -->
+        <View
+            android:layout_width="16dp"
+            android:layout_height="match_parent" />
+
+        <!-- Resumo das Receitas -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_income"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewIncomeSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Resumo das Receitas"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Caixa de Pesquisa -->
+    <EditText
+        android:id="@+id/editTextSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/summaryLayout"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_search_rounded"
+        android:drawableLeft="@android:drawable/ic_menu_search"
+        android:drawablePadding="8dp"
+        android:hint="Pesquisar"
+        android:padding="8dp" />
+
+    <!-- Lista de Despesas e Receitas -->
+    <ListView
+        android:id="@+id/listViewTransactions"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_above="@+id/bottomMenu"
+        android:layout_below="@id/editTextSearch"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1" />
+
+    <!-- Menu Inferior -->
+    <LinearLayout
+        android:id="@+id/bottomMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:weightSum="5">
+
+        <!-- Botão Cartões -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/buttonCards"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/btn_rounded_border"
+                android:src="@android:drawable/ic_menu_manage"
+                tools:src="@android:drawable/ic_menu_add" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cartões"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- Botão Despesas -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/buttonExpenses"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/btn_rounded_border"
+                android:src="@android:drawable/ic_menu_delete"
+                tools:src="@android:drawable/ic_menu_add" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Despesas"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- Botão Menu -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/buttonMenu"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/btn_rounded_border"
+                android:src="@android:drawable/ic_menu_view"
+                tools:src="@android:drawable/ic_menu_more" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Menu"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- Botão Receitas -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/buttonIncome"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/btn_rounded_border"
+                android:src="@android:drawable/ic_menu_add" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Receitas"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- Botão Configurações -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/buttonSettings"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/btn_rounded_border"
+                android:src="@android:drawable/ic_menu_preferences" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Configurações"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

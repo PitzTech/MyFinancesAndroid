@@ -1,0 +1,4 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#B71C1C"/> <!-- Cor de fundo para despesas -->
+    <corners android:radius="32dp"/> <!-- Raio dos cantos arredondados -->
+</shape>
