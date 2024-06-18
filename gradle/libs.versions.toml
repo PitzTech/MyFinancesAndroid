@@ -29,6 +29,6 @@ navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fr
 navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
 
 [plugins]
-android-application = { id = "com.android.application", version = "8.4.1" }
+android-application = { id = "com.android.application", version = "8.5.0" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version = "1.8.20" }
 kotlin-ksp = { id = "com.google.devtools.ksp", version = "1.8.20-1.0.11" }
