@@ -9,4 +9,11 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="title">Title</string>
+    <string name="value">Value</string>
+    <string name="category">Category</string>
+    <string name="data">Data</string>
+    <string name="date_picker">Date Picker</string>
+    <string name="cancel">Cancel</string>
+    <string name="add">Add</string>
 </resources>

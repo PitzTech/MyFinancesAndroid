@@ -1,4 +1,5 @@
 [versions]
+appcompatVersion = "1.4.0"
 kotlin = "1.8.20"
 room = "2.5.1"
 lifecycle = "2.6.0"
@@ -11,6 +12,7 @@ androidxJunit = "1.1.5"
 espressoCore = "3.5.1"
 
 [libraries]
+androidx-appcompat-v140 = { module = "androidx.appcompat:appcompat", version.ref = "appcompatVersion" }
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
