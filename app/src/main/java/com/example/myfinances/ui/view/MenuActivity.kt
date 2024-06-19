@@ -3,9 +3,8 @@ package com.example.myfinances.ui.view
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.Observer
-import com.example.myfinances.R
+import androidx.lifecycle.ViewModelProvider
 import com.example.myfinances.data.database.AppDatabase
 import com.example.myfinances.data.repository.TransactionRepository
 import com.example.myfinances.databinding.ActivityMenuBinding
