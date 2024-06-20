@@ -21,7 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "MyFinances"
 include(":app")
-
-gradle.settingsEvaluated {
-    settings.extensions.extraProperties["org.gradle.java.home"] = System.getenv("JAVA_HOME")
-}
+ 
