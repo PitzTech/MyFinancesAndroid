@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,7 +31,8 @@ fun CustomTextField(
     value: String,
     onValueChange: (String) -> Unit,
     placeholder: String,
-    isPassword: Boolean = false
+    isPassword: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default
 ) {
     var text by remember { mutableStateOf(value) }
     val visualTransformation =
@@ -53,6 +55,7 @@ fun CustomTextField(
             modifier = Modifier.fillMaxSize(),
             textStyle = TextStyle(fontSize = 18.sp, color = MaterialTheme.colorScheme.background),
             visualTransformation = visualTransformation,
+            keyboardOptions = keyboardOptions,
             decorationBox = { innerTextField ->
                 if (text.isEmpty()) {
                     Text(

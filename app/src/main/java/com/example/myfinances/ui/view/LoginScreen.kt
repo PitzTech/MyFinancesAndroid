@@ -122,7 +122,7 @@ fun LoginScreen(navController: NavHostController, userViewModel: UserViewModel) 
 
     userViewModel.user.observeForever { user ->
         if (user != null) {
-            navController.navigate(NavRoutes.START)
+            navController.navigate(NavRoutes.HOME)
         } else {
             loginError = true
         }
