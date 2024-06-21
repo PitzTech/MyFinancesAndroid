@@ -1,5 +1,9 @@
 package com.example.myfinances.ui.view
 
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,18 +23,54 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.example.myfinances.data.database.AppDatabase
+import com.example.myfinances.data.model.User
+import com.example.myfinances.data.repository.UserRepository
 import com.example.myfinances.ui.components.BackButton
 import com.example.myfinances.ui.components.CustomButton
 import com.example.myfinances.ui.components.CustomTextField
 import com.example.myfinances.ui.theme.primaryButton
 import com.example.myfinances.ui.theme.primaryText
 import com.example.myfinances.ui.theme.secondaryButton
+import com.example.myfinances.ui.viewmodel.UserViewModel
+import com.example.myfinances.ui.viewmodel.UserViewModelFactory
+import java.util.Date
+
+class SignInActivity : ComponentActivity() {
+    private val userViewModel: UserViewModel by viewModels {
+        val userDao = AppDatabase.getDatabase(applicationContext).userDao()
+        val userRepository = UserRepository(userDao)
+        UserViewModelFactory(userRepository)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            val navController = rememberNavController()
+            SignInScreen(navController, userViewModel)
+        }
+    }
+}
 
 @Composable
-fun SignInScreen(navController: NavHostController) {
+fun SignInScreen(navController: NavHostController, userViewModel: UserViewModel) {
     var username by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+
+    fun handleCreateUser() {
+        val newUser = User(
+            username = username,
+            email = email,
+            password = password,
+            createdAt = Date(),
+            updatedAt = Date()
+        )
+        userViewModel.createUser(newUser)
+        // Navegar para a próxima tela, se necessário
+        // navController.navigate("next_screen")
+    }
 
     Column(
         modifier = Modifier
@@ -106,7 +146,8 @@ fun SignInScreen(navController: NavHostController) {
                 CustomButton(
                     text = "See finances",
                     backgroundColor = MaterialTheme.colorScheme.primaryButton,
-                    textColor = MaterialTheme.colorScheme.primaryText
+                    textColor = MaterialTheme.colorScheme.primaryText,
+                    onClick = { handleCreateUser() }
                 )
             }
         }

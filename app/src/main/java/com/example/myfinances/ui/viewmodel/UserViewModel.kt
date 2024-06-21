@@ -1,23 +1,53 @@
 package com.example.myfinances.ui.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import com.example.myfinances.data.database.DatabaseProvider
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
 import com.example.myfinances.data.model.User
 import com.example.myfinances.data.repository.UserRepository
+import kotlinx.coroutines.launch
 
-class UserViewModel(application: Application) : AndroidViewModel(application) {
-    private val userRepository: UserRepository
+class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
 
-    init {
-        val userDao = DatabaseProvider.getDatabase(application).userDao()
-        userRepository = UserRepository(userDao)
+    private val _user = MutableLiveData<User?>()
+    val user: LiveData<User?> get() = _user
+
+    fun createUser(user: User) {
+        viewModelScope.launch {
+            userRepository.createUser(user)
+        }
     }
 
-    fun getUserById(id: Int): LiveData<User> = userRepository.getUserById(id)
-    fun getAllUsers(): LiveData<List<User>> = userRepository.getAllUsers()
-    fun insert(user: User) = userRepository.insert(user)
-    fun update(user: User) = userRepository.update(user)
-    fun delete(user: User) = userRepository.delete(user)
+    fun getUserById(userId: Long) {
+        viewModelScope.launch {
+            val retrievedUser = userRepository.getUserById(userId)
+            _user.value = retrievedUser
+        }
+    }
+
+    fun getAllUsers(): LiveData<List<User>> = liveData {
+        val users = userRepository.getAllUsers()
+        emit(users)
+    }
+
+    fun updateUser(user: User) {
+        viewModelScope.launch {
+            userRepository.updateUser(user)
+        }
+    }
+
+    fun deleteUser(user: User) {
+        viewModelScope.launch {
+            userRepository.deleteUser(user)
+        }
+    }
+
+    fun authenticateUser(email: String, password: String) {
+        viewModelScope.launch {
+            val authenticatedUser = userRepository.authenticateUser(email, password)
+            _user.value = authenticatedUser
+        }
+    }
 }

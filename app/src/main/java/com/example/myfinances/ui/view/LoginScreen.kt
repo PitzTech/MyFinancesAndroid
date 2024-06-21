@@ -25,11 +25,17 @@ import com.example.myfinances.ui.components.CustomTextField
 import com.example.myfinances.ui.theme.primaryButton
 import com.example.myfinances.ui.theme.primaryText
 import com.example.myfinances.ui.theme.secondaryButton
+import com.example.myfinances.ui.viewmodel.UserViewModel
 
 @Composable
-fun LoginScreen(navController: NavHostController) {
+fun LoginScreen(navController: NavHostController, userViewModel: UserViewModel) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var loginError by remember { mutableStateOf(false) }
+
+    fun handleLogin() {
+        userViewModel.authenticateUser(email, password)
+    }
 
     Column(
         modifier = Modifier
@@ -89,6 +95,14 @@ fun LoginScreen(navController: NavHostController) {
                 )
             }
 
+            if (loginError) {
+                Text(
+                    text = "Invalid email or password",
+                    color = MaterialTheme.colorScheme.error,
+                    style = MaterialTheme.typography.bodySmall
+                )
+            }
+
             Column(
                 modifier = Modifier
                     .fillMaxSize(),
@@ -98,9 +112,18 @@ fun LoginScreen(navController: NavHostController) {
                 CustomButton(
                     text = "See finances",
                     backgroundColor = MaterialTheme.colorScheme.primaryButton,
-                    textColor = MaterialTheme.colorScheme.primaryText
+                    textColor = MaterialTheme.colorScheme.primaryText,
+                    onClick = { handleLogin() }
                 )
             }
+        }
+    },
+
+    userViewModel.user.observeForever { user ->
+        if (user != null) {
+            navController.navigate("next_screen") // Substitua "next_screen" pela tela desejada após o login
+        } else {
+            loginError = true
         }
     }
 }
