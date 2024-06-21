@@ -2,4 +2,11 @@
 <resources>
 
     <style name="Theme.MyFinances" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="Theme.MyFinances.Splash" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/blue_500</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
 </resources>
