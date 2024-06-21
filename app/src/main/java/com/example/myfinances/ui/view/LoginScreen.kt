@@ -22,6 +22,7 @@ import androidx.navigation.NavHostController
 import com.example.myfinances.ui.components.BackButton
 import com.example.myfinances.ui.components.CustomButton
 import com.example.myfinances.ui.components.CustomTextField
+import com.example.myfinances.ui.navigation.NavRoutes
 import com.example.myfinances.ui.theme.primaryButton
 import com.example.myfinances.ui.theme.primaryText
 import com.example.myfinances.ui.theme.secondaryButton
@@ -117,11 +118,11 @@ fun LoginScreen(navController: NavHostController, userViewModel: UserViewModel) 
                 )
             }
         }
-    },
+    }
 
     userViewModel.user.observeForever { user ->
         if (user != null) {
-            navController.navigate("next_screen") // Substitua "next_screen" pela tela desejada após o login
+            navController.navigate(NavRoutes.START)
         } else {
             loginError = true
         }

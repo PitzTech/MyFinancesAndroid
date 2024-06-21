@@ -30,6 +30,7 @@ import com.example.myfinances.data.repository.UserRepository
 import com.example.myfinances.ui.components.BackButton
 import com.example.myfinances.ui.components.CustomButton
 import com.example.myfinances.ui.components.CustomTextField
+import com.example.myfinances.ui.navigation.NavRoutes
 import com.example.myfinances.ui.theme.primaryButton
 import com.example.myfinances.ui.theme.primaryText
 import com.example.myfinances.ui.theme.secondaryButton
@@ -68,8 +69,7 @@ fun SignInScreen(navController: NavHostController, userViewModel: UserViewModel)
             updatedAt = Date()
         )
         userViewModel.createUser(newUser)
-        // Navegar para a próxima tela, se necessário
-        // navController.navigate("next_screen")
+        navController.navigate(NavRoutes.START)
     }
 
     Column(
@@ -144,7 +144,7 @@ fun SignInScreen(navController: NavHostController, userViewModel: UserViewModel)
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 CustomButton(
-                    text = "See finances",
+                    text = "Register",
                     backgroundColor = MaterialTheme.colorScheme.primaryButton,
                     textColor = MaterialTheme.colorScheme.primaryText,
                     onClick = { handleCreateUser() }

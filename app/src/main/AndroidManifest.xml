@@ -23,8 +23,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".ui.view.LoginActivity" />
-        <activity android:name=".ui.view.StartActivity" />
     </application>
 
 </manifest>

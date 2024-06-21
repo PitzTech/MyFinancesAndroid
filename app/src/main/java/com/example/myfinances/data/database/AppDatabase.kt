@@ -4,19 +4,31 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.myfinances.data.dao.*
-import com.example.myfinances.data.model.*
 import androidx.room.TypeConverters
+import com.example.myfinances.data.dao.BankDao
+import com.example.myfinances.data.dao.CategoryDao
+import com.example.myfinances.data.dao.CreditCardDao
+import com.example.myfinances.data.dao.PreferenceDao
+import com.example.myfinances.data.dao.TransactionDao
+import com.example.myfinances.data.dao.UserDao
+import com.example.myfinances.data.model.Bank
+import com.example.myfinances.data.model.Category
+import com.example.myfinances.data.model.CreditCard
+import com.example.myfinances.data.model.Preference
+import com.example.myfinances.data.model.Transaction
+import com.example.myfinances.data.model.User
 
-@Database(entities = [
-    User::class,
-    Preference::class,
-    Bank::class,
-    CreditCard::class,
-    Category::class,
-    Transaction::class
-                     ],
-    version = 1
+@Database(
+    entities = [
+        User::class,
+        Preference::class,
+        Bank::class,
+        CreditCard::class,
+        Category::class,
+        Transaction::class
+    ],
+    version = 1,
+    exportSchema = false
 )
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {

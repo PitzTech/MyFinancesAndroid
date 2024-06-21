@@ -14,6 +14,9 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
     private val _user = MutableLiveData<User?>()
     val user: LiveData<User?> get() = _user
 
+    private val _isAuthenticated = MutableLiveData<Boolean>(false)
+    val isAuthenticated: LiveData<Boolean> get() = _isAuthenticated
+
     fun createUser(user: User) {
         viewModelScope.launch {
             userRepository.createUser(user)
@@ -48,6 +51,12 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
         viewModelScope.launch {
             val authenticatedUser = userRepository.authenticateUser(email, password)
             _user.value = authenticatedUser
+            _isAuthenticated.value = authenticatedUser != null
         }
+    }
+
+    fun logout() {
+        _user.value = null
+        _isAuthenticated.value = false
     }
 }

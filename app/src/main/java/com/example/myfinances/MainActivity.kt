@@ -6,9 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -44,8 +43,7 @@ class MainActivity : ComponentActivity() {
 fun App(userViewModel: UserViewModel) {
     AppBase {
         val navController = rememberNavController()
-
-        val isAuthenticated = false
+        val isAuthenticated by userViewModel.isAuthenticated.observeAsState(false)
 
         val startDestination = if (isAuthenticated) NavRoutes.START else NavRoutes.START
 
@@ -57,14 +55,3 @@ fun App(userViewModel: UserViewModel) {
     }
 }
 
-@Preview
-@Composable
-fun AppPreview() {
-    AppBase {
-        val navController = rememberNavController()
-        val userDao = AppDatabase.getDatabase(LocalContext.current).userDao()
-        val userRepository = UserRepository(userDao)
-        val userViewModel = viewModel<UserViewModel>(factory = UserViewModelFactory(userRepository))
-        App(userViewModel)
-    }
-}
